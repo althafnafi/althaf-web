@@ -1,6 +1,6 @@
 import { filesystem, resolvePath, normalizePath, FSNode } from "./filesystem";
 
-const COMMANDS = ["cat", "cd", "clear", "echo", "help", "ls", "open", "pwd", "whoami"];
+const COMMANDS = ["cat", "cd", "clear", "echo", "help", "ls", "open", "pwd", "snake", "whoami"];
 const OPEN_SECTIONS = ["about", "blog", "contact", "home", "projects"];
 
 export interface CompletionResult {

@@ -8,7 +8,7 @@ import {
 
 export interface CommandOutput {
   text: string;
-  type: "output" | "error" | "success" | "navigate";
+  type: "output" | "error" | "success" | "navigate" | "game";
   navigateTo?: string;
 }
 
@@ -43,6 +43,8 @@ export function executeCommand(
       return cmdPwd(currentPath);
     case "whoami":
       return cmdWhoami();
+    case "snake":
+      return { output: [{ text: "", type: "game" as const }] };
     case "clear":
       return { output: [{ text: "__clear__", type: "output" }] };
     case "open":
@@ -78,6 +80,7 @@ function cmdHelp(): CommandResult {
   whoami            Who am I?
   open <section>    Navigate to a section (projects, blog, about, contact)
   clear             Clear the terminal
+  snake             ...
   help              Show this help message
 
 Sections: projects · blog · about · contact`,

@@ -7,12 +7,14 @@ import { executeCommand } from "@/lib/commands";
 import { pathToString } from "@/lib/filesystem";
 import { getCompletions } from "@/lib/autocomplete";
 import TerminalLine from "./TerminalLine";
+import SnakeBackground from "./SnakeBackground";
+import SnakeGame from "./SnakeGame";
 
 type Line = {
   id: number;
   type: "input" | "output" | "boot";
   content: string;
-  outputType?: "output" | "error" | "success" | "navigate";
+  outputType?: "output" | "error" | "success" | "navigate" | "game";
   path?: string;
 };
 
@@ -34,6 +36,7 @@ export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [booting, setBooting] = useState(true);
   const [lineCounter, setLineCounter] = useState(0);
+  const [gameActive, setGameActive] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -137,6 +140,11 @@ export default function Terminal() {
       if (navOutput?.navigateTo) {
         setTimeout(() => router.push(navOutput.navigateTo!), 400);
       }
+
+      // Handle game launch
+      if (result.output.some((o) => o.type === "game")) {
+        setTimeout(() => setGameActive(true), 50);
+      }
     },
     [input, currentPath, router]
   );
@@ -222,7 +230,20 @@ export default function Terminal() {
         </div>
 
         {/* Output area */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1 bg-[#0d1117]">
+        <div className="flex-1 overflow-hidden relative bg-[#0d1117]">
+          <SnakeBackground />
+
+          {gameActive ? (
+            <SnakeGame onExit={() => {
+              setGameActive(false);
+              setLines((prev) => [
+                ...prev,
+                { id: Date.now(), type: "input", content: "^C", path: pathToString(currentPath) },
+              ]);
+              setTimeout(() => inputRef.current?.focus(), 50);
+            }} />
+          ) : (
+          <div className="relative h-full overflow-y-auto px-4 py-4 space-y-1">
           {lines.map((line) => (
             <TerminalLine key={line.id} line={line} />
           ))}
@@ -262,6 +283,8 @@ export default function Terminal() {
           )}
 
           <div ref={bottomRef} />
+          </div>
+          )}
         </div>
 
         {/* tmux bottom status bar */}
