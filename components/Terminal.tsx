@@ -193,9 +193,10 @@ export default function Terminal() {
 
   return (
     <div
-      className="h-screen w-full bg-[#0d1117] flex flex-col overflow-hidden cursor-text"
+      className="min-h-screen w-full bg-[#0d1117] flex items-center justify-center p-6"
       onClick={() => inputRef.current?.focus()}
     >
+      <div className="w-full max-w-3xl h-[75vh] flex flex-col rounded-xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/60 cursor-text">
       {/* Terminal window chrome */}
       <div className="flex items-center gap-2 px-4 py-3 bg-[#161b22] border-b border-gray-800 shrink-0">
         <div className="w-3 h-3 rounded-full bg-red-500 opacity-80" />
@@ -207,7 +208,7 @@ export default function Terminal() {
       </div>
 
       {/* Output area */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1 bg-[#0d1117]">
         {lines.map((line) => (
           <TerminalLine key={line.id} line={line} />
         ))}
@@ -252,6 +253,7 @@ export default function Terminal() {
       {/* Mobile hint */}
       <div className="px-4 pb-2 text-gray-600 text-xs font-mono text-center shrink-0 md:hidden">
         tap anywhere to focus · type 'help' for commands
+      </div>
       </div>
     </div>
   );
