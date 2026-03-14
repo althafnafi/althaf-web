@@ -210,14 +210,14 @@ export default function Terminal() {
         </div>
 
         {/* tmux top status bar */}
-        <div className="flex items-center bg-[#1a2e1f] text-[#39d353] text-base font-mono px-0 shrink-0 select-none">
+        <div className="flex items-center bg-[#1a2e1f] text-green-400 text-base font-mono px-0 shrink-0 select-none">
           {/* Session name */}
-          <span className="bg-[#0d1117] text-[#39d353] px-3 py-0.5">[althaf.dev]</span>
+          <span className="bg-[#0d1117] text-green-400 px-3 py-0.5">[althaf.dev]</span>
           {/* Windows */}
-          <span className="bg-[#0f3a1a] text-[#39d353] px-3 py-0.5 font-bold border-r border-[#39d353]/20">0:terminal*</span>
-          <Link href="/projects" className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-[#39d353]/20">1:projects</Link>
-          <Link href="/blog"     className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-[#39d353]/20">2:blog</Link>
-          <Link href="/about"    className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-[#39d353]/20">3:about</Link>
+          <span className="bg-[#0f3a1a] text-green-400 px-3 py-0.5 font-bold border-r border-green-400/20">0:terminal*</span>
+          <Link href="/projects" className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-green-400/20">1:projects</Link>
+          <Link href="/blog"     className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-green-400/20">2:blog</Link>
+          <Link href="/about"    className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-green-400/20">3:about</Link>
           <Link href="/contact"  className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors">4:contact</Link>
         </div>
 
@@ -236,7 +236,7 @@ export default function Terminal() {
                 <span className="text-purple-400">althaf.dev</span>
                 <span className="text-gray-500">:</span>
                 <span className="text-yellow-400">{pathToString(currentPath)}</span>
-                <span className="text-[#39d353]">$</span>
+                <span className="text-green-400">$</span>
               </span>
               <div className="relative flex-1 ml-1">
                 <input
@@ -254,7 +254,7 @@ export default function Terminal() {
                 />
                 {/* Block cursor */}
                 <span
-                  className="absolute top-0 bottom-0 w-[0.6em] bg-[#39d353] opacity-80 cursor-blink pointer-events-none"
+                  className="absolute top-0 bottom-0 w-[0.6em] bg-green-400 opacity-80 cursor-blink pointer-events-none"
                   style={{ left: `${input.length}ch` }}
                 />
               </div>
@@ -287,16 +287,16 @@ function TmuxStatusBar({ path }: { path: string }) {
   }, []);
 
   return (
-    <div className="flex items-center justify-between bg-[#1a2e1f] text-[#39d353] text-base font-mono px-0 shrink-0 select-none">
+    <div className="flex items-center justify-between bg-[#1a2e1f] text-green-400 text-base font-mono px-0 shrink-0 select-none">
       {/* Left: session + path */}
       <div className="flex items-center">
-        <span className="bg-[#0d1117] text-[#39d353] px-3 py-0.5">althaf.dev</span>
-        <span className="bg-[#0f3a1a] text-[#39d353] px-3 py-0.5 border-x border-[#39d353]/20"> {path} </span>
+        <span className="bg-[#0d1117] text-green-400 px-3 py-0.5">althaf.dev</span>
+        <span className="bg-[#0f3a1a] text-green-400 px-3 py-0.5 border-x border-green-400/20"> {path} </span>
       </div>
       {/* Right: date + time */}
       <div className="flex items-center">
-        <span className="bg-[#0f3a1a] text-[#39d353] px-3 py-0.5 border-x border-[#39d353]/20">{date}</span>
-        <span className="bg-[#0d1117] text-[#39d353] px-3 py-0.5">{time}</span>
+        <span className="bg-[#0f3a1a] text-green-400 px-3 py-0.5 border-x border-green-400/20">{date}</span>
+        <span className="bg-[#0d1117] text-green-400 px-3 py-0.5">{time}</span>
       </div>
     </div>
   );
