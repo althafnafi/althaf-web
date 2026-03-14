@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Dark background -->
+  <rect width="100" height="100" rx="16" fill="#0d1117"/>
+
+  <!-- ">" chevron — forms the bowl of "a" -->
+  <path d="M 13 22 L 45 50 L 13 78"
+    fill="none" stroke="#4ade80" stroke-width="7"
+    stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- "|" bar — forms the right stem of "a", tip of ">" connects to it -->
+  <line x1="49" y1="22" x2="49" y2="78"
+    stroke="#4ade80" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- "_" cursor -->
+  <line x1="58" y1="78" x2="87" y2="78"
+    stroke="#4ade80" stroke-width="7" stroke-linecap="round"/>
+</svg>
