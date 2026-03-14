@@ -78,12 +78,12 @@ function cmdHelp(): CommandResult {
   cat <file>        Read file contents
   pwd               Print working directory
   whoami            Who am I?
-  open <section>    Navigate to a section (projects, blog, about, contact)
+  open <section>    Navigate to a section (projects, blog, about, work, contact)
   clear             Clear the terminal
   snake             ...
   help              Show this help message
 
-Sections: projects · blog · about · contact`,
+Sections: projects · blog · about · work · contact`,
         type: "output",
       },
     ],
@@ -200,6 +200,7 @@ function cmdOpen(section?: string): CommandResult {
     projects: "/projects",
     blog: "/blog",
     about: "/about",
+    work: "/work",
     contact: "/contact",
     home: "/",
     "~": "/",

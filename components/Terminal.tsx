@@ -207,7 +207,8 @@ export default function Terminal({ onMinimize, onSnakeCommand }: Props) {
         <Link href="/projects" className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-green-400/20">1:projects</Link>
         <Link href="/blog"     className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-green-400/20">2:blog</Link>
         <Link href="/about"    className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-green-400/20">3:about</Link>
-        <Link href="/contact"  className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors">4:contact</Link>
+        <Link href="/contact"  className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-green-400/20">4:contact</Link>
+        <Link href="/work"     className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors">5:work</Link>
       </div>
 
       {/* Output area */}

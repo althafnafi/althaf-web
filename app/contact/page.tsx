@@ -4,10 +4,9 @@ import Navbar from "@/components/Navbar";
 import { useState } from "react";
 
 const socials = [
-  { label: "Email", value: "hello@althaf.dev", href: "mailto:hello@althaf.dev" },
-  { label: "GitHub", value: "github.com/althaf", href: "https://github.com/althaf" },
-  { label: "Twitter", value: "@althaf", href: "https://twitter.com/althaf" },
-  { label: "LinkedIn", value: "linkedin.com/in/althaf", href: "https://linkedin.com/in/althaf" },
+  { label: "Email", value: "althafnaa@gmail.com", href: "mailto:althafnaa@gmail.com" },
+  { label: "GitHub", value: "github.com/althafnafi", href: "https://github.com/althafnafi" },
+  { label: "LinkedIn", value: "linkedin.com/in/althafnafi", href: "https://linkedin.com/in/althafnafi" },
 ];
 
 export default function ContactPage() {

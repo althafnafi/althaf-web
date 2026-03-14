@@ -1,7 +1,7 @@
 import { filesystem, resolvePath, normalizePath, FSNode } from "./filesystem";
 
 const COMMANDS = ["cat", "cd", "clear", "echo", "help", "ls", "open", "pwd", "snake", "whoami"];
-const OPEN_SECTIONS = ["about", "blog", "contact", "home", "projects"];
+const OPEN_SECTIONS = ["about", "blog", "contact", "home", "projects", "work"];
 
 export interface CompletionResult {
   completed: string;       // the new input value to set

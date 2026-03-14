@@ -3,14 +3,26 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "about — althaf.dev",
-  description: "Software engineer. Builder of things.",
+  description: "Computer Engineering graduate from Universitas Indonesia. Software engineer across mobile, web, robotics, and AI.",
 };
 
 const skills = [
-  { category: "Languages", items: ["Python", "TypeScript", "JavaScript", "SQL"] },
-  { category: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
-  { category: "Backend", items: ["Node.js", "FastAPI", "PostgreSQL", "Redis"] },
-  { category: "Tools", items: ["Git", "Docker", "Linux", "Vercel"] },
+  {
+    category: "Mobile",
+    items: ["Swift", "SwiftUI", "UIKit", "Dart", "Flutter"],
+  },
+  {
+    category: "Web",
+    items: ["TypeScript", "Python", "Go", "Next.js", "FastAPI", "Django", "Echo", "Hono", "Express", "Tailwind"],
+  },
+  {
+    category: "Data & Infra",
+    items: ["PostgreSQL", "MongoDB", "Redis", "Docker", "RabbitMQ", "Firebase"],
+  },
+  {
+    category: "IoT & Robotics",
+    items: ["C/C++", "ROS", "OpenCV", "Raspberry Pi", "Arduino", "ESP32", "MQTT"],
+  },
 ];
 
 export default function AboutPage() {
@@ -28,16 +40,33 @@ export default function AboutPage() {
           <section>
             <div className="text-gray-300 text-sm leading-relaxed space-y-4">
               <p>
-                Hi, I&apos;m <span className="text-white font-semibold">Althaf</span> — a software engineer who builds things for the web.
+                Hi, I&apos;m <span className="text-white font-semibold">Althaf Nafi Anwar</span> — a software engineer
+                based in Jakarta, Indonesia.
               </p>
               <p>
-                I&apos;m passionate about clean code, great developer experience, and products that actually make people&apos;s lives better.
-                I enjoy the full stack — from wrangling databases to pixel-pushing frontends.
+                I graduated with a Computer Engineering degree from Universitas Indonesia (GPA 3.85/4.00),
+                where I worked on everything from iOS apps with ML at the Apple Developer Academy,
+                to autonomous underwater vehicles running ROS and computer vision.
               </p>
               <p>
-                When I&apos;m not coding, you&apos;ll find me tinkering with side projects, reading about distributed systems,
-                or trying to convince myself that I don&apos;t need another mechanical keyboard.
+                I like working across the stack — mobile, web, robotics, AI. If it&apos;s an interesting
+                problem, I&apos;m probably already thinking about how to build it.
               </p>
+            </div>
+          </section>
+
+          {/* Education */}
+          <section>
+            <h2 className="text-gray-500 text-xs mb-4 uppercase tracking-wider">education</h2>
+            <div className="border border-gray-800 rounded-lg p-4 bg-[#161b22]">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-white font-semibold text-sm">Universitas Indonesia</p>
+                  <p className="text-gray-400 text-sm">B.Eng, Computer Engineering</p>
+                  <p className="text-gray-500 text-xs mt-1">GPA 3.85 / 4.00</p>
+                </div>
+                <span className="text-gray-500 text-xs shrink-0">2021 – 2025</span>
+              </div>
             </div>
           </section>
 
@@ -67,15 +96,11 @@ export default function AboutPage() {
               <div className="space-y-2 text-gray-300">
                 <div className="flex gap-3">
                   <span className="text-green-400 shrink-0">→</span>
-                  <span>Building projects and sharpening my craft</span>
+                  <span>Building mAIMeal — an AI-powered meal planning startup</span>
                 </div>
                 <div className="flex gap-3">
                   <span className="text-green-400 shrink-0">→</span>
-                  <span>Writing about things I learn along the way</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="text-green-400 shrink-0">→</span>
-                  <span>Open to interesting opportunities</span>
+                  <span>Open to new opportunities</span>
                 </div>
               </div>
             </div>
