@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { executeCommand } from "@/lib/commands";
 import { pathToString } from "@/lib/filesystem";
+import { getCompletions } from "@/lib/autocomplete";
 import TerminalLine from "./TerminalLine";
 
 type Line = {
@@ -158,7 +159,17 @@ export default function Terminal() {
         }
       } else if (e.key === "Tab") {
         e.preventDefault();
-        // Simple tab completion could go here
+        const { completed, options } = getCompletions(input, currentPath);
+        if (options.length > 1) {
+          // Print all options as a new output line, then fill common prefix
+          const pathStr = pathToString(currentPath);
+          setLines((prev) => [
+            ...prev,
+            { id: Date.now(), type: "input", content: input, path: pathStr },
+            { id: Date.now() + 1, type: "output", content: options.join("  "), outputType: "output" },
+          ]);
+        }
+        if (completed !== input) setInput(completed);
       } else if (e.key === "l" && e.ctrlKey) {
         e.preventDefault();
         setLines([]);
