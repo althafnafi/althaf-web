@@ -14,7 +14,7 @@ interface TerminalLineProps {
 export default function TerminalLine({ line }: TerminalLineProps) {
   if (line.type === "boot") {
     return (
-      <div className="text-cyan-400 whitespace-pre-wrap font-mono text-base leading-relaxed">
+      <div className="text-teal-400 whitespace-pre-wrap font-mono text-base leading-relaxed">
         {line.content}
       </div>
     );
