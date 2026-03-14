@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const SEG = 20;          // matches game cell size
+const SEG = 20;
 const STEP_MS = 110;
 const TURN_CHANCE = 0.07;
 const NUM_SNAKES = 10;
@@ -18,7 +18,7 @@ interface BgSnake {
 }
 
 function spawnSnake(w: number, h: number): BgSnake {
-  const len = 8 + Math.floor(Math.random() * 9); // 8–16
+  const len = 8 + Math.floor(Math.random() * 9);
   const edge = Math.floor(Math.random() * 4);
   let x: number, y: number, dx: number, dy: number;
   switch (edge) {
@@ -30,8 +30,12 @@ function spawnSnake(w: number, h: number): BgSnake {
   return { segs: [[x, y]], dx, dy, dead: false, respawnAt: 0, len };
 }
 
-export default function SnakeBackground() {
+interface Props { paused?: boolean; }
+
+export default function SnakeBackground({ paused }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pausedRef = useRef(paused);
+  useEffect(() => { pausedRef.current = paused; }, [paused]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,7 +43,9 @@ export default function SnakeBackground() {
     const ctx = canvas.getContext("2d")!;
     let w = 0, h = 0;
     let snakes: BgSnake[] = [];
-    let now = 0;
+    let lastStep = 0;
+    let rafId = 0;
+    let elapsed = 0;
 
     function resize() {
       if (!canvas) return;
@@ -58,14 +64,10 @@ export default function SnakeBackground() {
       const [hx, hy] = s.segs[0];
       s.segs.unshift([hx + s.dx * SEG, hy + s.dy * SEG]);
       if (s.segs.length > s.len) s.segs.pop();
-
       const allOff = s.segs.every(([x, y]) =>
         x < -SEG * 3 || x > w + SEG * 3 || y < -SEG * 3 || y > h + SEG * 3
       );
-      if (allOff) {
-        s.dead = true;
-        s.respawnAt = now + 600 + Math.random() * 1200;
-      }
+      if (allOff) { s.dead = true; s.respawnAt = elapsed + 600 + Math.random() * 1200; }
     }
 
     function drawSnake(s: BgSnake) {
@@ -74,6 +76,23 @@ export default function SnakeBackground() {
         ctx.fillStyle = `rgba(74,222,128,${alpha})`;
         ctx.fillRect(x + 1, y + 1, SEG - 2, SEG - 2);
       });
+    }
+
+    function loop(now: number) {
+      rafId = requestAnimationFrame(loop);
+      if (pausedRef.current) return;
+
+      const delta = now - lastStep;
+      if (delta < STEP_MS) return;
+      lastStep = now;
+      elapsed += delta;
+
+      ctx.clearRect(0, 0, w, h);
+      for (const s of snakes) {
+        if (s.dead && elapsed >= s.respawnAt) Object.assign(s, spawnSnake(w, h));
+        stepSnake(s);
+        drawSnake(s);
+      }
     }
 
     resize();
@@ -85,19 +104,10 @@ export default function SnakeBackground() {
     });
 
     window.addEventListener("resize", resize);
-
-    const id = setInterval(() => {
-      now += STEP_MS;
-      ctx.clearRect(0, 0, w, h);
-      for (const s of snakes) {
-        if (s.dead && now >= s.respawnAt) Object.assign(s, spawnSnake(w, h));
-        stepSnake(s);
-        drawSnake(s);
-      }
-    }, STEP_MS);
+    rafId = requestAnimationFrame(loop);
 
     return () => {
-      clearInterval(id);
+      cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
     };
   }, []);

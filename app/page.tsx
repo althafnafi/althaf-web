@@ -16,8 +16,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#0d1117] relative overflow-hidden">
-      {/* Background layer — always visible behind everything */}
-      <SnakeBackground />
+      {/* Background layer — paused when snake game is running */}
+      <SnakeBackground paused={gameActive} />
 
       {/* Snake game — full screen, shown when active */}
       {gameActive && (
