@@ -203,23 +203,22 @@ export default function Terminal() {
         <div className="flex items-center gap-2 px-4 py-2.5 bg-[#1c2128] border-b border-gray-700 shrink-0">
           <div className="w-3 h-3 rounded-full bg-red-500 opacity-80" />
           <div className="w-3 h-3 rounded-full bg-yellow-500 opacity-80" />
-          <div className="w-3 h-3 rounded-full bg-teal-500 opacity-80" />
+          <div className="w-3 h-3 rounded-full bg-green-500 opacity-80" />
           <span className="ml-3 text-gray-400 text-base font-mono">
             althaf@althaf.dev: {pathToString(currentPath)}
           </span>
         </div>
 
         {/* tmux top status bar */}
-        <div className="flex items-center bg-teal-400 text-black text-base font-mono px-0 shrink-0 select-none">
+        <div className="flex items-center bg-[#1a2e1f] text-[#39d353] text-base font-mono px-0 shrink-0 select-none">
           {/* Session name */}
-          <span className="bg-[#0d1117] text-teal-400 px-3 py-0.5">[althaf.dev]</span>
-          <span className="bg-teal-400 text-black px-0.5"></span>
+          <span className="bg-[#0d1117] text-[#39d353] px-3 py-0.5">[althaf.dev]</span>
           {/* Windows */}
-          <span className="bg-teal-400 text-black px-3 py-0.5 font-bold border-r border-teal-600">0:terminal*</span>
-          <Link href="/projects" className="px-3 py-0.5 hover:bg-teal-300 transition-colors border-r border-teal-600">1:projects</Link>
-          <Link href="/blog"     className="px-3 py-0.5 hover:bg-teal-300 transition-colors border-r border-teal-600">2:blog</Link>
-          <Link href="/about"    className="px-3 py-0.5 hover:bg-teal-300 transition-colors border-r border-teal-600">3:about</Link>
-          <Link href="/contact"  className="px-3 py-0.5 hover:bg-teal-300 transition-colors">4:contact</Link>
+          <span className="bg-[#0f3a1a] text-[#39d353] px-3 py-0.5 font-bold border-r border-[#39d353]/20">0:terminal*</span>
+          <Link href="/projects" className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-[#39d353]/20">1:projects</Link>
+          <Link href="/blog"     className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-[#39d353]/20">2:blog</Link>
+          <Link href="/about"    className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors border-r border-[#39d353]/20">3:about</Link>
+          <Link href="/contact"  className="px-3 py-0.5 hover:bg-[#0f3a1a] transition-colors">4:contact</Link>
         </div>
 
         {/* Output area */}
@@ -237,7 +236,7 @@ export default function Terminal() {
                 <span className="text-purple-400">althaf.dev</span>
                 <span className="text-gray-500">:</span>
                 <span className="text-yellow-400">{pathToString(currentPath)}</span>
-                <span className="text-teal-400">$</span>
+                <span className="text-[#39d353]">$</span>
               </span>
               <div className="relative flex-1 ml-1">
                 <input
@@ -255,7 +254,7 @@ export default function Terminal() {
                 />
                 {/* Block cursor */}
                 <span
-                  className="absolute top-0 bottom-0 w-[0.6em] bg-teal-400 opacity-80 cursor-blink pointer-events-none"
+                  className="absolute top-0 bottom-0 w-[0.6em] bg-[#39d353] opacity-80 cursor-blink pointer-events-none"
                   style={{ left: `${input.length}ch` }}
                 />
               </div>
@@ -288,16 +287,16 @@ function TmuxStatusBar({ path }: { path: string }) {
   }, []);
 
   return (
-    <div className="flex items-center justify-between bg-teal-400 text-black text-base font-mono px-0 shrink-0 select-none">
+    <div className="flex items-center justify-between bg-[#1a2e1f] text-[#39d353] text-base font-mono px-0 shrink-0 select-none">
       {/* Left: session + path */}
       <div className="flex items-center">
-        <span className="bg-[#0d1117] text-teal-400 px-3 py-0.5">althaf.dev</span>
-        <span className="bg-teal-600 text-white px-3 py-0.5 border-x border-teal-700"> {path} </span>
+        <span className="bg-[#0d1117] text-[#39d353] px-3 py-0.5">althaf.dev</span>
+        <span className="bg-[#0f3a1a] text-[#39d353] px-3 py-0.5 border-x border-[#39d353]/20"> {path} </span>
       </div>
       {/* Right: date + time */}
       <div className="flex items-center">
-        <span className="bg-teal-600 text-white px-3 py-0.5 border-x border-teal-700">{date}</span>
-        <span className="bg-[#0d1117] text-teal-400 px-3 py-0.5">{time}</span>
+        <span className="bg-[#0f3a1a] text-[#39d353] px-3 py-0.5 border-x border-[#39d353]/20">{date}</span>
+        <span className="bg-[#0d1117] text-[#39d353] px-3 py-0.5">{time}</span>
       </div>
     </div>
   );
