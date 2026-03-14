@@ -33,8 +33,8 @@ export default function SnakeGame({ onExit }: Props) {
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    canvas.width = container.clientWidth;
-    canvas.height = container.clientHeight;
+    canvas.width = container.clientWidth || window.innerWidth;
+    canvas.height = container.clientHeight || window.innerHeight;
     const ctx = canvas.getContext("2d")!;
 
     const s = state.current;
