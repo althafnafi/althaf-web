@@ -2,11 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-const SEG = 14;
+const SEG = 20;          // matches game cell size
 const STEP_MS = 110;
 const TURN_CHANCE = 0.07;
-const LEN = 18;
-const NUM_SNAKES = 2;
+const NUM_SNAKES = 10;
 
 type Seg = [number, number];
 interface BgSnake {
@@ -15,9 +14,11 @@ interface BgSnake {
   dy: number;
   dead: boolean;
   respawnAt: number;
+  len: number;
 }
 
 function spawnSnake(w: number, h: number): BgSnake {
+  const len = 8 + Math.floor(Math.random() * 9); // 8–16
   const edge = Math.floor(Math.random() * 4);
   let x: number, y: number, dx: number, dy: number;
   switch (edge) {
@@ -26,7 +27,7 @@ function spawnSnake(w: number, h: number): BgSnake {
     case 2: x = -SEG;    y = Math.floor(Math.random() * Math.floor(h / SEG)) * SEG;   dx = 1;  dy = 0;  break;
     default:x = w + SEG; y = Math.floor(Math.random() * Math.floor(h / SEG)) * SEG;   dx = -1; dy = 0;  break;
   }
-  return { segs: [[x, y]], dx, dy, dead: false, respawnAt: 0 };
+  return { segs: [[x, y]], dx, dy, dead: false, respawnAt: 0, len };
 }
 
 export default function SnakeBackground() {
@@ -50,27 +51,26 @@ export default function SnakeBackground() {
 
     function stepSnake(s: BgSnake) {
       if (s.dead) return;
-      // maybe turn
       if (Math.random() < TURN_CHANCE) {
         if (Math.random() < 0.5) { const t = s.dx; s.dx = -s.dy; s.dy = t; }
         else                      { const t = s.dx; s.dx = s.dy;  s.dy = -t; }
       }
       const [hx, hy] = s.segs[0];
       s.segs.unshift([hx + s.dx * SEG, hy + s.dy * SEG]);
-      if (s.segs.length > LEN) s.segs.pop();
+      if (s.segs.length > s.len) s.segs.pop();
 
       const allOff = s.segs.every(([x, y]) =>
         x < -SEG * 3 || x > w + SEG * 3 || y < -SEG * 3 || y > h + SEG * 3
       );
       if (allOff) {
         s.dead = true;
-        s.respawnAt = now + 800 + Math.random() * 1500;
+        s.respawnAt = now + 600 + Math.random() * 1200;
       }
     }
 
     function drawSnake(s: BgSnake) {
       s.segs.forEach(([x, y], i) => {
-        const alpha = ((LEN - i) / LEN) * 0.13;
+        const alpha = ((s.len - i) / s.len) * 0.13;
         ctx.fillStyle = `rgba(74,222,128,${alpha})`;
         ctx.fillRect(x + 1, y + 1, SEG - 2, SEG - 2);
       });
@@ -79,7 +79,7 @@ export default function SnakeBackground() {
     resize();
     snakes = Array.from({ length: NUM_SNAKES }, (_, i) => {
       const s = spawnSnake(w, h);
-      s.respawnAt = i * 600;
+      s.respawnAt = i * 300;
       s.dead = true;
       return s;
     });
@@ -90,9 +90,7 @@ export default function SnakeBackground() {
       now += STEP_MS;
       ctx.clearRect(0, 0, w, h);
       for (const s of snakes) {
-        if (s.dead && now >= s.respawnAt) {
-          Object.assign(s, spawnSnake(w, h));
-        }
+        if (s.dead && now >= s.respawnAt) Object.assign(s, spawnSnake(w, h));
         stepSnake(s);
         drawSnake(s);
       }
