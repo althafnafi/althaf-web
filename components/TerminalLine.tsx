@@ -14,7 +14,7 @@ interface TerminalLineProps {
 export default function TerminalLine({ line }: TerminalLineProps) {
   if (line.type === "boot") {
     return (
-      <div className="text-green-400 whitespace-pre-wrap font-mono text-sm leading-relaxed">
+      <div className="text-green-400 whitespace-pre-wrap font-mono text-base leading-relaxed">
         {line.content}
       </div>
     );
@@ -22,7 +22,7 @@ export default function TerminalLine({ line }: TerminalLineProps) {
 
   if (line.type === "input") {
     return (
-      <div className="flex items-start gap-1 font-mono text-sm">
+      <div className="flex items-start gap-1 font-mono text-base">
         <span className="text-green-400 shrink-0">
           <span className="text-blue-400">althaf</span>
           <span className="text-gray-500">@</span>
@@ -45,7 +45,7 @@ export default function TerminalLine({ line }: TerminalLineProps) {
       : "text-gray-300";
 
   return (
-    <div className={`font-mono text-sm whitespace-pre-wrap leading-relaxed ${colorClass}`}>
+    <div className={`font-mono text-base whitespace-pre-wrap leading-relaxed ${colorClass}`}>
       {line.content}
     </div>
   );

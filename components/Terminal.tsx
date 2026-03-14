@@ -21,8 +21,8 @@ const BOOT_LINES = [
   "",
 ];
 
-const BOOT_DELAY = 60; // ms per character
-const LINE_DELAY = 300; // ms between lines
+const BOOT_DELAY = 30; // ms per character
+const LINE_DELAY = 150; // ms between lines
 
 export default function Terminal() {
   const router = useRouter();
@@ -214,7 +214,7 @@ export default function Terminal() {
 
         {/* Current input line */}
         {!booting && (
-          <form onSubmit={handleSubmit} className="flex items-center gap-1 font-mono text-sm">
+          <form onSubmit={handleSubmit} className="flex items-center gap-1 font-mono text-base">
             <span className="shrink-0">
               <span className="text-blue-400">althaf</span>
               <span className="text-gray-500">@</span>
@@ -230,12 +230,17 @@ export default function Terminal() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="w-full bg-transparent text-white outline-none caret-green-400 font-mono text-sm"
+                className="w-full bg-transparent text-white outline-none caret-transparent font-mono text-base"
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck={false}
                 aria-label="terminal input"
+              />
+              {/* Block cursor */}
+              <span
+                className="absolute top-0 bottom-0 w-[0.6em] bg-green-400 opacity-80 cursor-blink pointer-events-none"
+                style={{ left: `${input.length}ch` }}
               />
             </div>
           </form>
