@@ -1,0 +1,58 @@
+---
+title: "Building a Terminal in React"
+date: "2025-02-15"
+description: "How I built an interactive terminal as my portfolio's landing page."
+---
+
+When I decided to redo my personal site, I knew I didn't want another generic portfolio with a hero section, a projects grid, and a contact form.
+
+I wanted something that felt like *me*.
+
+So I built a terminal.
+
+## The idea
+
+The concept is simple: represent my portfolio as a virtual filesystem. Visitors navigate it with real Unix commands.
+
+```
+~
+├── about.txt
+├── resume.pdf
+├── projects/
+│   ├── potabot/
+│   └── althaf.dev/
+├── blog/
+│   └── hello-world.md
+└── contact.txt
+```
+
+Type `ls` to see what's here. Type `cat about.txt` to read my bio. Type `cd projects` and `ls` to browse my work. It's the same mental model you already have — just applied to a portfolio.
+
+## The implementation
+
+The core is a React component that manages:
+
+1. **A line buffer** — an array of `{ type, content }` objects rendered as terminal output
+2. **A virtual filesystem** — a plain JS object tree mirroring the directory structure
+3. **A command parser** — splits input, dispatches to handlers, returns output lines
+4. **History navigation** — arrow keys scroll through previous commands
+5. **A boot sequence** — types out the welcome message character by character on first load
+
+The trickiest part was the boot animation. I wanted it to feel like a real terminal booting up — the text appears one character at a time, then the prompt fades in.
+
+```tsx
+async function runBoot() {
+  for (let j = 0; j <= line.length; j++) {
+    setLines([{ type: "boot", content: line.slice(0, j) + "█" }]);
+    await new Promise(r => setTimeout(r, 60));
+  }
+}
+```
+
+## What I'd do differently
+
+The virtual filesystem is currently hardcoded. A cleaner approach would be to derive it from the actual content directory — so adding a new blog post automatically adds a new `blog/post.md` entry. That's on the roadmap.
+
+## Try it
+
+If you haven't already — go back to [the home page](/) and poke around. Type `help` to see what's available.
