@@ -96,11 +96,11 @@ export default function AboutPage() {
               <div className="space-y-2 text-gray-300">
                 <div className="flex gap-3">
                   <span className="text-green-400 shrink-0">→</span>
-                  <span>Building mAIMeal — an AI-powered meal planning startup</span>
+                  <span>Open to new opportunities</span>
                 </div>
                 <div className="flex gap-3">
                   <span className="text-green-400 shrink-0">→</span>
-                  <span>Open to new opportunities</span>
+                  <span>Continuously learning — currently exploring systems programming and distributed systems</span>
                 </div>
               </div>
             </div>
