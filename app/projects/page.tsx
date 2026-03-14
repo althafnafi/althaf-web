@@ -11,7 +11,7 @@ const projects = [
     name: "mAIMeal",
     description: "AI-powered meal planner startup funded by UI Incubate. Generates personalized meal recommendations using LLMs, with a RAG-powered chatbot built on LangChain. Mobile app in Flutter, web in Next.js.",
     stack: ["Python", "LangChain", "LangGraph", "FastAPI", "Flutter", "Next.js", "PostgreSQL", "Cloudflare"],
-    status: "active",
+    status: "",
     year: "2024",
     repo: null,
   },
@@ -19,7 +19,7 @@ const projects = [
     name: "Wizards",
     description: "People's Award winner at NUS Medical Grand Challenge 2024, Singapore. Vision-based action classifiers for hazardous event detection with real-time data visualization from backend inference pipelines.",
     stack: ["Python", "OpenCV", "FastAPI", "Next.js", "MongoDB"],
-    status: "archived",
+    status: "",
     year: "2024",
     repo: null,
   },
@@ -71,9 +71,11 @@ export default function ProjectsPage() {
                   <h2 className="text-white font-semibold text-lg">{project.name}</h2>
                   <span className="text-gray-600 text-xs">{project.year}</span>
                 </div>
-                <span className={`text-xs shrink-0 ${statusColor[project.status] || "text-gray-400"}`}>
-                  ● {project.status}
-                </span>
+                {project.status && (
+                  <span className={`text-xs shrink-0 ${statusColor[project.status] || "text-gray-400"}`}>
+                    ● {project.status}
+                  </span>
+                )}
               </div>
               <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                 {project.description}

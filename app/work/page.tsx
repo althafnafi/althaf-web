@@ -13,8 +13,9 @@ const experience = [
     location: "Jakarta, Indonesia",
     period: "Feb 2025 – Jun 2025",
     bullets: [
-      "Built features for the Grab passenger app on the Demands & Ads team.",
-      "Worked across Swift, SwiftUI, and UIKit on iOS.",
+      "Part of the mobile Demands and Ads team — maintained and developed new features for the Grab passenger app.",
+      "Implemented snapshot and unit tests across major app flows, improving release confidence in CI.",
+      "Collaborated with designers, backend engineers, and PMs through code reviews and documentation.",
     ],
   },
   {
@@ -23,8 +24,9 @@ const experience = [
     location: "Jakarta, Indonesia",
     period: "Mar 2024 – Dec 2024",
     bullets: [
-      "Developed iOS apps using Swift, SwiftUI, UIKit, SpriteKit, and CoreML.",
-      "Followed challenge-based learning to ship polished app experiences.",
+      "Built multiple iOS apps using SwiftUI, UIKit, and Core frameworks, focusing on performance and clean architecture.",
+      "Worked on projects involving computer vision, IMU (CoreMotion), and on-device ML (CoreML, Vision).",
+      "Implemented real-time data handling and background processing for mobile applications.",
     ],
   },
   {
@@ -33,26 +35,28 @@ const experience = [
     location: "Depok, Indonesia",
     period: "Feb 2022 – Aug 2024",
     bullets: [
-      "Built software systems for an autonomous underwater vehicle.",
-      "Worked with ROS, OpenCV, C/C++, and Raspberry Pi for perception and control.",
+      "Led a team of 6 engineers building autonomous and manual control systems for underwater and surface vehicles.",
+      "Designed modular perception and localization pipelines using YOLO and visual odometry, deployed on real-world robotic systems.",
+      "Built software pipelines integrating IMU and camera for localization and navigation.",
     ],
   },
   {
     role: "Software Engineer Intern",
-    company: "PT Inti Utama Solusindo",
+    company: "PT Inti Utama Solusindo (Pharos Group)",
     location: "Jakarta, Indonesia",
     period: "Jan 2024 – Feb 2024",
     bullets: [
-      "Contributed to backend and infrastructure work during a short-term placement.",
+      "Built a real-time computer vision system with backend management for a scalable product management system using Django.",
+      "Integrated async job queues with RabbitMQ and Pika to handle communication between the admin interface and object detection system.",
     ],
   },
   {
-    role: "Teaching Assistant — Network Lab",
-    company: "Universitas Indonesia",
+    role: "Laboratory Teaching Assistant",
+    company: "Network Laboratory, Universitas Indonesia",
     location: "Depok, Indonesia",
     period: "Aug 2023 – Dec 2024",
     bullets: [
-      "Assisted students in computer networking labs and practical sessions.",
+      "Instructed ~80 computer engineering students across OOP (Java), Computer Networks (CCNA), and Database Systems (SQL, API, Systems Design).",
     ],
   },
   {
@@ -61,7 +65,7 @@ const experience = [
     location: "Depok, Indonesia",
     period: "Jun 2023 – Aug 2023",
     bullets: [
-      "Built and maintained web presence for the student organization.",
+      "Built the website for CEO FTUI's yearly event, spotlighting job prospects for Engineering Faculty students.",
     ],
   },
 ];
@@ -70,14 +74,44 @@ const awards = [
   {
     title: "People's Award",
     event: "NUS Medical Grand Challenge 2024",
-    location: "Singapore",
+    location: "Singapore (International)",
     year: "2024",
   },
   {
-    title: "Funded Startup",
-    event: "UI Incubate — mAIMeal",
-    location: "Jakarta, Indonesia",
+    title: "Finalist",
+    event: "Singapore Autonomous Underwater Vehicle Challenge",
+    location: "Singapore (International)",
     year: "2024",
+  },
+  {
+    title: "National Finalist & 2nd Place Regional",
+    event: "KRBAI 2023",
+    location: "Semarang (National)",
+    year: "2023",
+  },
+  {
+    title: "3rd Place — ROV Category",
+    event: "Technogine 2023",
+    location: "Bandung (National)",
+    year: "2023",
+  },
+  {
+    title: "4th Place — Autonomous Control Ship",
+    event: "KKCTBN 2023",
+    location: "Depok (National)",
+    year: "2023",
+  },
+  {
+    title: "2nd Place — Autonomous Control Ship",
+    event: "KKCTBN 2022",
+    location: "Surabaya (National)",
+    year: "2022",
+  },
+  {
+    title: "Finalist",
+    event: "Singapore Autonomous Underwater Vehicle Challenge",
+    location: "Singapore (International)",
+    year: "2022",
   },
 ];
 
@@ -131,7 +165,7 @@ export default function WorkPage() {
             <div className="space-y-3">
               {awards.map((award) => (
                 <div
-                  key={award.title}
+                  key={`${award.title}-${award.year}`}
                   className="border border-gray-800 rounded-lg p-4 bg-[#161b22] flex items-start justify-between gap-4"
                 >
                   <div>
