@@ -38,6 +38,7 @@ export default function Terminal({ onMinimize, onSnakeCommand }: Props) {
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [booting, setBooting] = useState(true);
+  const [confirming, setConfirming] = useState<null | { prompt: string; onConfirm: () => void }>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -98,6 +99,38 @@ export default function Terminal({ onMinimize, onSnakeCommand }: Props) {
         content: cmd,
         path: pathStr,
       };
+
+      // Handle y/n confirmation responses
+      if (confirming) {
+        const answer = cmd.toLowerCase();
+        setConfirming(null);
+        if (answer === "y" || answer === "yes") {
+          setLines((prev) => [...prev, inputLine, {
+            id: Date.now() + 1, type: "output", content: "Opening resume.pdf...", outputType: "success",
+          }]);
+          confirming.onConfirm();
+        } else {
+          setLines((prev) => [...prev, inputLine, {
+            id: Date.now() + 1, type: "output", content: "Cancelled.", outputType: "output",
+          }]);
+        }
+        setHistory((h) => [cmd, ...h.slice(0, 99)]);
+        setHistoryIndex(-1);
+        setInput("");
+        return;
+      }
+
+      // Intercept resume.pdf to show y/n confirmation
+      if (/^cat\s+(.+\/)?resume\.pdf$/.test(cmd)) {
+        setLines((prev) => [...prev, inputLine, {
+          id: Date.now() + 1, type: "output", content: "Open resume.pdf in a new tab? [y/n]", outputType: "output",
+        }]);
+        setConfirming({ prompt: "Open resume.pdf in a new tab? [y/n]", onConfirm: () => window.open("/resume.pdf", "_blank") });
+        setHistory((h) => [cmd, ...h.slice(0, 99)]);
+        setHistoryIndex(-1);
+        setInput("");
+        return;
+      }
 
       if (cmd === "clear") {
         setLines([]);

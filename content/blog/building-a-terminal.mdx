@@ -38,21 +38,6 @@ The core is a React component that manages:
 4. **History navigation** — arrow keys scroll through previous commands
 5. **A boot sequence** — types out the welcome message character by character on first load
 
-The trickiest part was the boot animation. I wanted it to feel like a real terminal booting up — the text appears one character at a time, then the prompt fades in.
-
-```tsx
-async function runBoot() {
-  for (let j = 0; j <= line.length; j++) {
-    setLines([{ type: "boot", content: line.slice(0, j) + "█" }]);
-    await new Promise(r => setTimeout(r, 60));
-  }
-}
-```
-
-## What I'd do differently
-
-The virtual filesystem is currently hardcoded. A cleaner approach would be to derive it from the actual content directory — so adding a new blog post automatically adds a new `blog/post.md` entry. That's on the roadmap.
-
 ## Try it
 
 If you haven't already — go back to [the home page](/) and poke around. Type `help` to see what's available.

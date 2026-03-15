@@ -44,13 +44,13 @@ export default function AboutPage() {
                 based in Jakarta, Indonesia.
               </p>
               <p>
-                I graduated with a Computer Engineering degree from Universitas Indonesia (GPA 3.85/4.00),
-                where I worked on everything from iOS apps with ML at the Apple Developer Academy,
-                to autonomous underwater vehicles running ROS and computer vision.
+                I graduated with a Computer Engineering degree from Universitas Indonesia (GPA 3.85/4.00).
+                My experience spans a wide range of software engineering — from building iOS apps at the Apple Developer Academy,
+                to backend and infrastructure work, to running perception systems on autonomous underwater vehicles.
               </p>
               <p>
-                I like working across the stack — mobile, web, robotics, AI. If it&apos;s an interesting
-                problem, I&apos;m probably already thinking about how to build it.
+                I&apos;m comfortable across the stack and pick up new domains quickly. Mobile, web, robotics, AI —
+                if it&apos;s an interesting problem, I&apos;m probably already thinking about how to build it.
               </p>
             </div>
           </section>

@@ -124,7 +124,7 @@ export default function WorkPage() {
           <p className="text-gray-500 text-sm mb-1">ls ~/work</p>
           <h1 className="text-2xl font-bold text-white">work</h1>
           <p className="text-gray-400 mt-2 text-sm">
-            Where I&apos;ve worked and what I&apos;ve won.
+            Where I&apos;ve worked.
           </p>
         </div>
 
@@ -156,6 +156,25 @@ export default function WorkPage() {
                   </ul>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Resume */}
+          <section>
+            <h2 className="text-gray-500 text-xs mb-4 uppercase tracking-wider">resume</h2>
+            <div className="border border-gray-800 rounded-lg p-4 bg-[#161b22] flex items-center justify-between gap-4">
+              <div>
+                <p className="text-white font-semibold text-sm">Althaf Nafi Anwar — CV</p>
+                <p className="text-gray-500 text-xs mt-0.5">Last updated 2025</p>
+              </div>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-green-400 hover:text-green-300 transition-colors shrink-0"
+              >
+                → download
+              </a>
             </div>
           </section>
 
